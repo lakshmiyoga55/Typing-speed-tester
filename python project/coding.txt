@@ -1,0 +1,40 @@
+import time
+
+# Sentence to type
+sentence = "Typing speed is the measure of how fast you can type."
+
+print("***** Typing Speed Tester *****")
+print("Type the following sentence exactly:\n")
+print(sentence)
+input("\nPress Enter when you are ready...")
+
+# Start the timer
+start_time = time.time()
+
+# Get user input
+typed = input("\nStart typing here:\n")
+
+# End the timer
+end_time = time.time()
+
+# Calculate results
+time_taken = round(end_time - start_time, 2)  # in seconds
+word_count = len(typed.split())
+speed = round(word_count / (time_taken / 60), 2)  # WPM
+
+# Accuracy
+correct_words = 0
+original_words = sentence.split()
+typed_words = typed.split()
+
+for i in range(min(len(original_words), len(typed_words))):
+    if original_words[i] == typed_words[i]:
+        correct_words += 1
+
+accuracy = round((correct_words / len(original_words)) * 100, 2)
+
+# Show results
+print("\n----- Results -----")
+print(f"Time Taken     : {time_taken} seconds")
+print(f"Typing Speed   : {speed} words per minute (WPM)")
+print(f"Accuracy       : {accuracy}%")
